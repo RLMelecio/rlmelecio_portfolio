@@ -1,101 +1,166 @@
+"use client"
 import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { FaGithub, FaFacebook, FaEnvelope } from "react-icons/fa";
+import "./styles/styles.css"
+import profile from './img/me.png'
+import leftimage from "../../public/img/blackhole.png"
+
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const getPNGImage = (name: string) => `/icons/${name}.png`;
+  const getJPGImage = (name: string) => `/img/${name}.jpg`;
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const [isFlipped, setisFlipped] = useState(false);
+  const [showResume, setshowResume] = useState(false);
+
+  const toolsAndLanguages = [
+    { name: "HTML", src: "/icons/html.png" },
+    { name: "CSS", src: "/icons/css.png" },
+    { name: "Vue", src: "/icons/vue.png" },
+    { name: "NextJS", src: "/icons/nextjs.png" },
+    { name: "ReactJS", src: "/icons/react.svg" },
+    { name: "Laravel", src: "/icons/laravel.svg" },
+    { name: "C#", src: "/icons/csharp.png" },
+    { name: "Python", src: "/icons/python.png" },
+    { name: "SQL", src: "/icons/ms-sql.png" },
+    { name: "Firebase", src: "/icons/firebase.png" },
+    { name: "Javascript", src: "/icons/javascript.png" },
+  ]
+
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const items = document.querySelectorAll(".tag *");
+
+      const HandleScroll = () => {
+        items.forEach((item) => {
+          const rect = item.getBoundingClientRect();
+          if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+            item.classList.add("visible");
+          } else {
+            item.classList.remove("visible");
+          }
+        });
+      };
+
+      window.addEventListener("scroll", HandleScroll);
+      HandleScroll();
+
+      return () => window.removeEventListener("scroll", HandleScroll);
+    }
+  }, []);
+
+
+  return (
+    <div>
+      <nav className="navmenu">
+        <div className="nav-left">
+
         </div>
+        <div className="nav-center">
+          <ul className="nav-links">
+            <div className="li-wrapper">
+              <li>
+                <a href="#wr-information">Home</a>
+              </li>
+            </div>
+            <div className="li-wrapper">
+              <li>
+                <a href="#certificate">Projects</a>
+              </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+      <hr />
+      <main>
+        <div className="tag wr-information">
+          <div className="wr-profile">
+            <div className="profile-img">
+              <img src={profile.src} alt="ROLAND_MELECIO_IMG" />
+            </div>
+            <div className="name">
+              <h1>Roland A. Melecio Jr.</h1>
+              <h3 className="text-lg">Web Developer</h3>
+            </div>
+          </div>
+          <div className="wr-description">
+            <div className="head-text">
+              <h1 className="text-2xl font-semibold">BS Information Technology at HCDC</h1>
+            </div>
+            <br />
+            <div className="description">
+              <p>I pursued my Information Technology studies at Holy Cross of Davao College. My primary focus is
+                on backend projects, though I don't work on website design that much. Despite this, I'm
+                eager to explore various design techniques and new concepts to enhance my growth and skills
+                as a web developer.
+              </p>
+            </div>
+            <div className={`resume-card ${isFlipped ? "clicked" : ""}`} onClick={() => setisFlipped(!isFlipped)}>
+              <div className={`resume-inner ${isFlipped ? "flipped" : ""}`}>
+                <div className="resume-front">
+                  <button className="resume-btn" onClick={() => setshowResume(true)}>View Resume</button>
+                </div>
+                <div className="resume-back">
+                  <button className="resume-btn">Click!</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {showResume && (
+          <div className="resume-modal">
+            <div className="resume-modal-content">
+              <span className="close-btn" onClick={() => setshowResume(false)}>&times;</span>
+              <iframe
+                src="/resume.pdf"
+                width="100%"
+                height="500px"
+                title="Resume"
+              ></iframe>
+            </div>
+          </div>
+        )}
+        <section className="tag wr-experience">
+          <div className="experiences">
+            <h1 className="text-2xl">PROGRAMMING / WEB DEVELOPMENT TOOLS AND LANGUAGES LEARNED</h1>
+            <div className="tools-languages">
+              {toolsAndLanguages.map((tool, index) => (
+                <div key={index} className="tool-item">
+                  <img src={tool.src} alt={tool.name} className="tool-icon" />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="tag projects">
+            <div>
+
+            </div>
+          </div>
+        </section>
+        <section className="tag wr-contact">
+          <div className="contact">
+            <div className="reach-out">
+              <h1 className="text-2xl font-bold">Reach Out!</h1>
+              <p>"Let's build something amazing together! Whether a project you came up, some assistance in web DEVELOPMENT
+                , or just want to chat about tech, feel free to reach out. I'd love to hear from you!
+                "</p>
+            </div>
+            <div className="social-icons">
+              <a href="https://github.com/RLMelecio" target="_blank" rel="noopener noreferrer">
+                <FaGithub className="icon" />
+              </a>
+              <a href="mailto:roland.meleciojr@gmail.com">
+                <FaEnvelope className="icon" />
+              </a>
+              <a href="https://www.facebook.com/voss.pi" target="_blank" rel="noopener noreferrer">
+                <FaFacebook className="icon" />
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
