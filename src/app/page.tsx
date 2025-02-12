@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { FaGithub, FaFacebook, FaEnvelope } from "react-icons/fa";
 import "./styles/styles.css"
 import profile from './img/me.png'
-import leftimage from "../../public/img/blackhole.png"
+import leftimage from "../../public/img/IT-Tech.gif"
 
 
 export default function Home() {
@@ -97,16 +97,11 @@ export default function Home() {
                 as a web developer.
               </p>
             </div>
-            <div className={`resume-card ${isFlipped ? "clicked" : ""}`} onClick={() => setisFlipped(!isFlipped)}>
-              <div className={`resume-inner ${isFlipped ? "flipped" : ""}`}>
-                <div className="resume-front">
-                  <button className="resume-btn" onClick={() => setshowResume(true)}>View Resume</button>
-                </div>
-                <div className="resume-back">
-                  <button className="resume-btn">Click!</button>
-                </div>
-              </div>
-            </div>
+            <button type="button" className="resume-btn"
+              onClick={() => {
+                console.log("Before:", showResume);
+                setshowResume(true);
+              }}>View Resume</button>
           </div>
         </div>
         {showResume && (
@@ -114,7 +109,7 @@ export default function Home() {
             <div className="resume-modal-content">
               <span className="close-btn" onClick={() => setshowResume(false)}>&times;</span>
               <iframe
-                src="/resume.pdf"
+                src="/img/roland_melecio_resume.pdf"
                 width="100%"
                 height="500px"
                 title="Resume"
@@ -126,11 +121,13 @@ export default function Home() {
           <div className="experiences">
             <h1 className="text-2xl">PROGRAMMING / WEB DEVELOPMENT TOOLS AND LANGUAGES LEARNED</h1>
             <div className="tools-languages">
-              {toolsAndLanguages.map((tool, index) => (
-                <div key={index} className="tool-item">
-                  <img src={tool.src} alt={tool.name} className="tool-icon" />
-                </div>
-              ))}
+              <div className="marquee">
+                {toolsAndLanguages.concat(toolsAndLanguages).map((tool, index) => (
+                  <div key={index} className="tool-item">
+                    <img src={tool.src} alt={tool.name} className="tool-icon" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           <div className="tag projects">
@@ -140,6 +137,9 @@ export default function Home() {
           </div>
         </section>
         <section className="tag wr-contact">
+          <div className="leftimage">
+            <Image src={leftimage} alt="it-tech" />
+          </div>
           <div className="contact">
             <div className="reach-out">
               <h1 className="text-2xl font-bold">Reach Out!</h1>
