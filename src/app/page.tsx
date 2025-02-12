@@ -28,6 +28,11 @@ export default function Home() {
     { name: "Javascript", src: "/icons/javascript.png" },
   ]
 
+  const projects = [
+    { name: "Seasense", tools: ["React Native", "Jupyter", "QGIS"], description: "Capstone Project focusing on fish data gathering application.", date: "JUNE 2024 - JANUARY 2025", src: "/img/p1_1.jpg" },
+    { name: "Inventory Management System", tools: ["Vue", "Laravel", "TailwindCSS"], description: "Simple inventory management system using Vue and Laravel", date: "FEBUARY 2024 - MAY 2024", src: "/img/p2_1.jpg" }
+  ]
+
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -67,7 +72,7 @@ export default function Home() {
             </div>
             <div className="li-wrapper">
               <li>
-                <a href="#certificate">Projects</a>
+                <a href="#exp">Projects</a>
               </li>
             </div>
           </ul>
@@ -117,7 +122,7 @@ export default function Home() {
             </div>
           </div>
         )}
-        <section className="tag wr-experience">
+        <section id="exp" className="tag wr-experience">
           <div className="experiences">
             <h1 className="text-2xl">PROGRAMMING / WEB DEVELOPMENT TOOLS AND LANGUAGES LEARNED</h1>
             <div className="tools-languages">
@@ -131,8 +136,23 @@ export default function Home() {
             </div>
           </div>
           <div className="tag projects">
-            <div>
-
+            <h1 className="text-2xl font-semibold">My Projects</h1>
+            <div className="projects-container">
+              {projects.map((project, index) => (
+                <div key={index} className="project-card">
+                  <img src={project.src} alt={project.name} className="project-image" />
+                  <div className="project-info">
+                    <h2 className="project-title">{project.name}</h2>
+                    <p className="project-description">{project.description}</p>
+                    <p className="project-date">{project.date}</p>
+                    <div className="project-tools">
+                      {project.tools.map((tool, i) => (
+                        <span key={i} className="tool">{tool}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
