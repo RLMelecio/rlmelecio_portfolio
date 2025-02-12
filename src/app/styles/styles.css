@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: rgb(11, 12, 14);
     animation: fade-up 0.9s;
