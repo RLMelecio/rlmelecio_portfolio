@@ -30,7 +30,7 @@ export default function Home() {
 
   const projects = [
     { name: "Seasense", tools: ["React Native", "Jupyter", "QGIS"], description: "Capstone Project focusing on fish data gathering application.", date: "JUNE 2024 - JANUARY 2025", src: "/img/p1_1.jpg" },
-    { name: "Inventory Management System", tools: ["Vue", "Laravel", "TailwindCSS"], description: "Simple inventory management system using Vue and Laravel", date: "FEBUARY 2024 - MAY 2024", src: "/img/p2_1.jpg" }
+    { name: "Inventory Management System", tools: ["Vue", "Laravel", "TailwindCSS"], description: "Simple inventory management system using Vue and Laravel.", date: "FEBUARY 2024 - MAY 2024", src: "/img/p2_1.jpg" }
   ]
 
 
@@ -67,12 +67,17 @@ export default function Home() {
           <ul className="nav-links">
             <div className="li-wrapper">
               <li>
-                <a href="#wr-information">Home</a>
+                <a href="#information">Home</a>
               </li>
             </div>
             <div className="li-wrapper">
               <li>
-                <a href="#exp">Projects</a>
+                <a href="#contacts">Contact</a>
+              </li>
+            </div>
+            <div className="li-wrapper">
+              <li>
+                <a href="#projects">Projects</a>
               </li>
             </div>
           </ul>
@@ -80,7 +85,7 @@ export default function Home() {
       </nav>
       <hr />
       <main>
-        <div className="tag wr-information">
+        <div id="information" className="tag wr-information">
           <div className="wr-profile">
             <div className="profile-img">
               <img src={profile.src} alt="ROLAND_MELECIO_IMG" />
@@ -122,7 +127,7 @@ export default function Home() {
             </div>
           </div>
         )}
-        <section id="exp" className="tag wr-experience">
+        <section className="tag wr-experience">
           <div className="experiences">
             <h1 className="text-2xl">PROGRAMMING / WEB DEVELOPMENT TOOLS AND LANGUAGES LEARNED</h1>
             <div className="tools-languages">
@@ -135,8 +140,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="tag projects">
-            <h1 className="text-2xl font-semibold">My Projects</h1>
+          <div id="projects" className="tag projects">
+            <h1 className="text-2xl font-semibold ml-5">My Projects</h1>
             <div className="projects-container">
               {projects.map((project, index) => (
                 <div key={index} className="project-card">
@@ -156,7 +161,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="tag wr-contact">
+        <section id="contacts" className="tag wr-contact">
           <div className="leftimage">
             <Image src={leftimage} alt="it-tech" />
           </div>
