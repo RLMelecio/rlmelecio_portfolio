@@ -1,4 +1,4 @@
-html{
+html {
     scroll-behavior: smooth;
 }
 
@@ -288,10 +288,11 @@ h1 {
 
 /* WR-CONTACT */
 .wr-contact {
+    min-height: 100vh;
+    height: 20rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 20rem;
     padding: 5rem;
     gap: 2rem;
     position: relative;
@@ -328,8 +329,8 @@ h1 {
 }
 
 .leftimage {
-    width: 15rem;
-    height: 15rem;
+    width: 25rem;
+    height: 25rem;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease-out;
@@ -436,6 +437,80 @@ h1 {
 }
 
 /* RESUME-BTN */
+
+
+
+/* SCREEN SIZES */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .wr-information {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .wr-experience {
+        margin-top: 500px;
+        padding-top: 20px;
+    }
+
+    .projects {
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+
+    .tools-languages {
+        margin-top: 10px;
+    }
+
+    .projects-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .project-card {
+        width: 90%;
+    }
+
+    .wr-contact {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
+
+    .contact {
+        display: flex;
+        text-align: center;
+    }
+
+    .leftimage {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .leftimage img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .wr-contact {
+        justify-content: center;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+/* SCREEN SIZES */
 
 
 /* >KEYFRAMES (GLOBAL)< */
