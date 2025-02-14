@@ -441,7 +441,12 @@ h1 {
 
 
 /* SCREEN SIZES */
-@media (max-width: 768px) {
+@media (max-width: 768px){
+    html, body{
+        width: 100%;
+        overflow-x: hidden;
+    }
+
     .nav-links {
         display: none;
     }
@@ -509,6 +514,18 @@ h1 {
     }
 }
 
+@media(max-width: 720px) and (max-height: 1612px){
+    .navmenu{
+        height: 1vh;
+    }
+}
+
+@media(max-width: 350px){
+    html, body{
+        width: 100%;
+        overflow-x: hidden;
+    }
+}
 
 /* SCREEN SIZES */
 
